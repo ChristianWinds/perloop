@@ -15,6 +15,8 @@ Accessed Wednesday, November 27th, 2019
 
 package Quote;
 
+use strict;
+
 sub new {
 	my $class = shift;
 	my $self = {};
@@ -44,8 +46,8 @@ sub get_author {
 }
 
 sub is_approved {
-	my $self = shift;
-	@_ ? $self->{_approved} = shift : $self->{_approved};
+	my $isquote = shift;
+	@_ ? $isquote->{_approved} = shift : $isquote->{_approved} = 1;
 }
 
 1;
