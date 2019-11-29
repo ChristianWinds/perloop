@@ -46,8 +46,34 @@ sub get_author {
 }
 
 sub is_approved {
-	my $isquote = shift;
-	@_ ? $isquote->{_approved} = shift : $isquote->{_approved} = 1;
+	# Precondition: The Quote object this subroutine receives holds valid
+	# phrase and author strings
+	# Postcondition: This subroutine returns a one value to this
+	# subroutine's caller if this subroutine's received Quote object holds
+	# a "Foo" string as a phrase and a "Bar" string as an author, or this
+	# subroutine returns a zero value if this subroutine's received Quote
+	# object does not hold a "Foo" string as a phrase or a "Bar" string as
+	# an author
+
+	my $possible_quote = shift;
+
+	# Obtain the phrase and author of the received Quote object to determine
+	# if the Quote object holds a valid quote
+	my $phrase = $possible_quote->get_phrase();
+	my $author = $possible_quote->get_author();
+
+	my $isquote = 0;
+
+	# Check the phrase and author of the received Quote object to determine
+	# if the Quote object holds a valid quote
+	if (($phrase eq "Foo") && ($author eq "Bar")) {
+		$isquote = 1;
+	}
+	else {
+		$isquote = 0;
+	}
+
+	return $isquote;
 }
 
 1;
